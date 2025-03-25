@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant Guide</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand {
+      color: #fff !important;
+      font-size: 1.5rem;
+    }
+    .btn-light {
+      background: linear-gradient(90deg, #ff758c, #ff7eb3);
+      color: #fff;
+      border: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-light:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .dish-card {
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    }
+    .dish-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-title {
+      color: #ff758c;
+      font-weight: bold;
+    }
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .dish-img {
+      transition: filter 0.3s;
+      width: 100%;
+      display: block;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      text-align: center;
+    }
+    .overlay-text {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+    .dish-card:hover .dish-img {
+      filter: blur(3px);
+    }
+    .dish-card:hover .overlay {
+      opacity: 1;
+    }
+    .modal-header {
+      background: linear-gradient(90deg, #ff758c, #ff7eb3);
+      color: #fff;
+    }
+    .modal-content {
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .modal-body {
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    }
+    h1.text-gradient {
+      background: linear-gradient(90deg, #ff758c, #ff7eb3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Restaurant Guide</a>
+      <button id="menuButton" class="btn btn-light text-gradient fw-bold ms-auto">Menu</button>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div id="menuChoices" class="container my-5">
+    <h1 class="text-center mb-5 text-3xl font-bold text-gradient">Explore Our Dishes</h1>
+    <div class="row">
+      <!-- Pizza Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="pizza">
+          <div class="card-img-container">
+            <img src="https://placehold.co/300x200?text=Pizza" class="card-img-top dish-img" alt="Pizza" />
+            <div class="overlay">
+              <p class="overlay-text">Delicious cheese pizza</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Pizza</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Burger Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="burger">
+          <div class="card-img-container">
+            <img src="https://placehold.co/300x200?text=Burger" class="card-img-top dish-img" alt="Burger" />
+            <div class="overlay">
+              <p class="overlay-text">Juicy beef burger</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Burger</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Pasta Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="pasta">
+          <div class="card-img-container">
+            <img src="https://placehold.co/300x200?text=Pasta" class="card-img-top dish-img" alt="Pasta" />
+            <div class="overlay">
+              <p class="overlay-text">Authentic Italian pasta</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Pasta</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Salad Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="salad">
+          <div class="card-img-container">
+            <img src="https://placehold.co/300x200?text=Salad" class="card-img-top dish-img" alt="Salad" />
+            <div class="overlay">
+              <p class="overlay-text">Fresh garden salad</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Salad</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expanded Dish Content -->
+  <div id="expandedDish" class="container my-5 d-none">
+    <button id="backToMenu" class="btn btn-light mb-4">Back to Menu</button>
+    <div class="row">
+      <div class="col-md-6">
+        <img id="expandedImage" src="" class="img-fluid rounded" alt="Dish Image">
+      </div>
+      <div class="col-md-6">
+        <h3 id="expandedTitle"></h3>
+        <p id="expandedDescription"></p>
+        <p><strong>Price:</strong> <span id="expandedPrice"></span></p>
+        <p><strong>Type:</strong> <span id="expandedType"></span></p>
+        <p><strong>Cooking Time:</strong> <span id="expandedCookingTime"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-5 py-4 text-center" style="background: linear-gradient(90deg, #ff758c, #ff7eb3); color: #fff;">
+    <div class="container">
+      <p class="mb-2">Follow us on:</p>
+      <div class="d-flex justify-content-center mb-3">
+        <a href="#" class="text-white mx-2" style="font-size: 1.5rem;"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white mx-2" style="font-size: 1.5rem;"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="text-white mx-2" style="font-size: 1.5rem;"><i class="bi bi-instagram"></i></a>
+      </div>
+      <p class="mb-0">&copy; 2023 Restaurant Guide. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const dishDetails = {
+      pizza: {
+        title: "Pizza",
+        description: "Our pizza is made with fresh ingredients, featuring a crispy thin crust, a generous layer of mozzarella, and topped with basil and tomato sauce.",
+        price: "$12.99",
+        foodType: "Italian",
+        cookingTime: "15 minutes",
+        image: "https://placehold.co/600x400?text=Pizza"
+      },
+      burger: {
+        title: "Burger",
+        description: "Enjoy our juicy beef burger grilled to perfection, served with lettuce, tomato, and our special sauce, making it a classic favorite.",
+        price: "$10.99",
+        foodType: "American",
+        cookingTime: "10 minutes",
+        image: "https://placehold.co/600x400?text=Burger"
+      },
+      pasta: {
+        title: "Pasta",
+        description: "Savor our authentic Italian pasta cooked al dente, tossed in a rich marinara sauce and sprinkled with parmesan cheese.",
+        price: "$11.99",
+        foodType: "Italian",
+        cookingTime: "12 minutes",
+        image: "https://placehold.co/600x400?text=Pasta"
+      },
+      salad: {
+        title: "Salad",
+        description: "A healthy mix of fresh greens and seasonal vegetables, tossed in a light vinaigrette for a refreshing taste.",
+        price: "$8.99",
+        foodType: "Healthy",
+        cookingTime: "5 minutes",
+        image: "https://placehold.co/600x400?text=Salad"
+      }
+    };
+
+    const menuChoices = document.getElementById('menuChoices');
+    const expandedDish = document.getElementById('expandedDish');
+    const menuButton = document.getElementById('menuButton');
+    const backToMenu = document.getElementById('backToMenu');
+
+    document.querySelectorAll('.dish-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const dishType = card.getAttribute('data-dish');
+        const details = dishDetails[dishType];
+
+        document.getElementById('expandedImage').src = details.image;
+        document.getElementById('expandedTitle').textContent = details.title;
+        document.getElementById('expandedDescription').textContent = details.description;
+        document.getElementById('expandedPrice').textContent = details.price;
+        document.getElementById('expandedType').textContent = details.foodType;
+        document.getElementById('expandedCookingTime').textContent = details.cookingTime;
+
+        menuChoices.classList.add('d-none');
+        expandedDish.classList.remove('d-none');
+      });
+    });
+
+    menuButton.addEventListener('click', () => {
+      menuChoices.classList.remove('d-none');
+      expandedDish.classList.add('d-none');
+    });
+
+    backToMenu.addEventListener('click', () => {
+      menuChoices.classList.remove('d-none');
+      expandedDish.classList.add('d-none');
+    });
+  </script>
+</body>
+</html>
