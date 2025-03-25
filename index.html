@@ -12,6 +12,9 @@
     body {
       background: linear-gradient(135deg, #fdfbfb, #ebedee);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     .navbar {
       background: linear-gradient(90deg, #ff9a9e, #fad0c4);
@@ -54,6 +57,8 @@
     .dish-img {
       transition: filter 0.3s;
       width: 100%;
+      height: 200px; /* Fixed height for uniformity */
+      object-fit: cover; /* Ensures the image scales properly */
       display: block;
     }
     .overlay {
@@ -97,6 +102,15 @@
       background: linear-gradient(90deg, #ff758c, #ff7eb3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+    #expandedImage {
+      max-width: 600px;
+      max-height: 400px;
+      width: 100%;
+      height: 100%;
+    }
+    footer {
+      margin-top: auto;
     }
   </style>
 </head>
@@ -205,7 +219,7 @@
         price: "$12.99",
         foodType: "Italian",
         cookingTime: "15 minutes",
-        image: "https://placehold.co/600x400?text=Pizza"
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pizza-3007395.jpg/1200px-Pizza-3007395.jpg" // Updated image link
       },
       burger: {
         title: "Burger",
@@ -213,7 +227,7 @@
         price: "$10.99",
         foodType: "American",
         cookingTime: "10 minutes",
-        image: "https://placehold.co/600x400?text=Burger"
+        image: "https://www.foodandwine.com/thmb/jldKZBYIoXJWXodRE9ut87K8Mag=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg" // Updated image link
       },
       pasta: {
         title: "Pasta",
@@ -221,7 +235,7 @@
         price: "$11.99",
         foodType: "Italian",
         cookingTime: "12 minutes",
-        image: "https://placehold.co/600x400?text=Pasta"
+        image: "https://www.allrecipes.com/thmb/IrY572TXic4UXXVn8EetsarI3S0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-269500-creamy-garlic-pasta-Beauties-4x3-f404628aad2a435a9985b2cf764209b5.jpg" // Updated image link
       },
       salad: {
         title: "Salad",
@@ -229,7 +243,7 @@
         price: "$8.99",
         foodType: "Healthy",
         cookingTime: "5 minutes",
-        image: "https://placehold.co/600x400?text=Salad"
+        image: "https://cookingwithayeh.com/wp-content/uploads/2023/11/Healthy-Caesar-Salad-Without-Anchovies-SQ-5-500x500.jpg" // Updated image link
       }
     };
 
